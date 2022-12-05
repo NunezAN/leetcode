@@ -10,22 +10,17 @@
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 var moveZeroes = function (nums) {
-  let l = 0;
-  let r = l + 1;
+  let lastNonZero = 0;
 
-  while (r < nums.length) {
-    if (nums[l] === 0) {
-      r = l + 1;
-      while (nums[r] === 0 && r < nums.length - 1) {
-        r++;
-      }
-      if (nums[r] !== 0) {
-        nums[l] = nums[r];
-        nums[r] = 0;
-      }
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== 0) {
+      nums[lastNonZero] = nums[i];
+      lastNonZero++;
     }
-    l++;
-    r++;
+  }
+
+  for (let i = nums.length - 1; i >= lastNonZero; i--) {
+    nums[i] = 0;
   }
 };
 // @lc code=end
