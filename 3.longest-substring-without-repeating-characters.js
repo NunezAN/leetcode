@@ -15,15 +15,16 @@ var lengthOfLongestSubstring = function (s) {
   let maxLen = 0;
   let front = 0;
   let back = 0;
-  for (; front < s.length; front++) {
+  while (front < s.length) {
     if (subMap.has(s[front]) && back <= subMap.get(s[front])) {
       back = subMap.get(s[front]) + 1;
     }
     subMap.set(s[front], front);
-    if (maxLen < front - back + 1) {
-      maxLen = front - back + 1;
+    const len = front - back + 1;
+    if (maxLen < len) {
+      maxLen = len;
     }
-    console.log(front, back);
+    front++;
   }
   return maxLen;
 };
