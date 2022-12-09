@@ -11,32 +11,21 @@
  */
 var longestPalindrome = function (s) {
   if (s.length < 2) return s;
-  let longest = "";
-
-  for (let i = 0; i < s.length - 1; i++) {
-    for (let j = i + 1; j < s.length + 1; j++) {
-      const sub = s.substring(i, j);
-      //   console.log(sub);
-      let l = 0;
-      let r = sub.length - 1;
-      let palindrome = true;
-      while (l < r) {
-        // console.log(sub[l], sub[r]);
-        if (sub[l] !== sub[r]) {
-          palindrome = false;
-          break;
-        }
-        l++;
-        r--;
-      }
-      if (palindrome) {
-        if (sub.length > longest.length) {
-          longest = sub;
-        }
-        // console.log(longest);
-      }
+  let maxSub = "";
+  const getPalindrome = (left, right, s) => {
+    while (left >= 0 && right < s.length) {
+      if (s[left] !== s[right]) break;
+      left--;
+      right++;
     }
+    return (s.substring(left+1,right))
+  };
+  for (let i = 0; i < s.length; i++) {
+    const odd = getPalindrome(i - 1, i + 1, s);
+    const even = getPalindrome(i, i + 1, s);
+    const curMax = odd.length > even.length ? odd : even;
+    maxSub = curMax.length > maxSub.length ? curMax : maxSub;
   }
-  return longest;
+  return maxSub;
 };
 // @lc code=end
