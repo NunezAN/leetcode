@@ -14,7 +14,7 @@ var rotate = function (matrix) {
     for (let col = row; col < matrix[0].length; col++) {
       [matrix[row][col], matrix[col][row]] = [
         matrix[col][row],
-        matrix[row][col],
+        matrix[row][col]
       ];
     }
   }
