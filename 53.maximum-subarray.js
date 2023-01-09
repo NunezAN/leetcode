@@ -10,12 +10,19 @@
  * @return {number}
  */
 var maxSubArray = function (nums) {
-  largestSum = nums[0];
-  cache = [nums[0]];
+  //   largestSum = nums[0];
+  //   cache = [nums[0]];
+  //   for (let i = 1; i < nums.length; i++) {
+  //     cache.push(nums[i]);
+  //     cache[i] = Math.max(cache[i], cache[i] + cache[i - 1]);
+  //     largestSum = Math.max(largestSum, cache[i]);
+  //   }
+  //   return largestSum;
+
+  let largestSum = nums[0];
   for (let i = 1; i < nums.length; i++) {
-    cache.push(nums[i]);
-    cache[i] = Math.max(cache[i], cache[i] + cache[i - 1]);
-    largestSum = Math.max(largestSum, cache[i]);
+    nums[i] = Math.max(nums[i], nums[i] + nums[i - 1]);
+    largestSum = Math.max(largestSum, nums[i]);
   }
   return largestSum;
 };
