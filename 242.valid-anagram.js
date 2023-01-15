@@ -11,24 +11,24 @@
  * @return {boolean}
  */
 var isAnagram = function (s, t) {
-   if(s.length !== t.length) return false;
-    
-  const anagramMap = new Map();
+  if (s.length !== t.length) return false;
+
+  charMapA = new Map();
+  charMapB = new Map();
 
   for (const char of s) {
-    anagramMap.set(char, anagramMap.get(char) + 1 || 1);
+    charMapA.set(char, charMapA.get(char) + 1 || 1);
+  }
+  for (const char of t) {
+    charMapB.set(char, charMapB.get(char) + 1 || 1);
   }
 
-  for (const char of t) {
-    if (!anagramMap.has(char)) {
+  for (const [key, valA] of charMapA) {
+    valB = charMapB.get(key);
+    if (valA !== valB || !charMapB.has(key)) {
       return false;
     }
-    anagramMap.set(char, anagramMap.get(char) - 1);
-
-    if (anagramMap.get(char) === 0) {
-      anagramMap.delete(char);
-    }
   }
-  return !anagramMap.size;
+  return true;
 };
 // @lc code=end
