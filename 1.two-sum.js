@@ -11,12 +11,12 @@
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
-    let targetMap = new Map();
-    for(let i=0;i<nums.length;i++) {
-        if(targetMap.has(nums[i])){
-            return [targetMap.get(nums[i]),i];
+    const sumMap = new Map();
+    for(let i=0;i<nums.length;i++){
+        if(sumMap.has(nums[i])){
+            return [sumMap.get(nums[i]),i];
         }
-        targetMap.set(target-nums[i],i);
+        sumMap.set(target-nums[i],i);
     }
     
 };
