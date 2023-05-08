@@ -10,15 +10,16 @@
  * @return {number}
  */
 var singleNumber = function (nums) {
-  const map = new Map();
-  for (const num of nums) {
-    if (!map.has(num)) {
-      map.set(num, 1);
-    } else {
-      map.delete(num);
+  let found = null;
+  const numsMap = new Map();
+  for (let num of nums) {
+    numsMap.set(num, numsMap.get(num) + 1 || 1);
+  }
+  
+  for(let [key, val] of numsMap){
+    if(val ===1){
+      return key;
     }
   }
-  const [firstKey] = map.keys();
-  return firstKey;
 };
 // @lc code=end
