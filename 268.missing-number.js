@@ -10,16 +10,15 @@
  * @return {number}
  */
 var missingNumber = function (nums) {
-  const missingSet = new Set();
-  for (const num of nums) {
-    missingSet.add(num);
-  }
+  nums.sort((a,b) => a-b);
+  const lastNum = nums[nums.length-1];
 
-  for (let i = 0; i <= nums.length; i++) {
-    if (!missingSet.has(i)) {
+  for(let i=0;i<nums.length;i++){
+    if(nums[i]!==i){
       return i;
     }
   }
-  return null;
+  return nums.length;
+  // console.log(nums);
 };
 // @lc code=end
