@@ -10,16 +10,15 @@
  * @return {boolean}
  */
 var containsDuplicate = function(nums) {
-    let dupeSet = new Set();
-    for(const num of nums){
-        if(dupeSet.has(num)){
+    const numMap = new Map();
+    for(let num of nums){
+        if(numMap.has(num)){
             return true;
         }
-        else{
-            dupeSet.add(num);
-        }
+        numMap.set(num, true);
     }
     return false;
+
 };
 // @lc code=end
 
