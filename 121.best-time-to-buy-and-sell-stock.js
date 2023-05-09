@@ -10,24 +10,18 @@
  * @return {number}
  */
 var maxProfit = function (prices) {
-  if (prices.length <= 1) {
-    return 0;
-  }
-
-  let maxprofit = 0;
-  let l = 0;
-  let r = 1;
-
-  while (r < prices.length) {
-    const profit = prices[r] - prices[l];
-    if (maxprofit < profit) {
-      console.log("max profit", profit);
-      maxprofit = profit;
-    } else if (profit < 0) {
-      l = r;
+  let maxProfit = 0;
+  let buy = 0;
+  let sell = 0;
+  while (sell < prices.length) {
+    if (prices[buy] < prices[sell]) {
+      let profit = prices[sell] - prices[buy];
+      maxProfit = Math.max(maxProfit, profit);
+    } else {
+      buy = sell;
     }
-    r = r + 1;
+    sell++;
   }
-  return maxprofit;
+  return maxProfit;
 };
 // @lc code=end
